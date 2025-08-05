@@ -42,7 +42,8 @@ services:
       - --agree-tos
       - --email
       - "${LETSENCRYPT_EMAIL}"
-      - -d "${DOMAIN}"
+      - -d
+      - "${DOMAIN}"
     volumes:
       - ./certbot/config:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
@@ -56,9 +57,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     entrypoint: >
       sh -c "while true; do
-            certbot renew --quiet --deploy-hook 'docker exec nginx nginx -s reload';
-            sleep 12h;
-            done"
+               certbot renew --quiet --deploy-hook 'docker exec nginx nginx -s reload';
+               sleep 12h;
+             done"
     restart: unless-stopped
 
 volumes:

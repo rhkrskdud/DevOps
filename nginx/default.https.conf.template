@@ -1,4 +1,4 @@
-# 1) HTTP -> HTTPS 리다이렉트 + ACME
+# 1) HTTP → HTTPS 리다이렉트 + ACME
 server {
     listen 80;
     server_name $DOMAIN;
@@ -15,7 +15,9 @@ server {
 
 # 2) HTTPS 서비스
 server {
+
     listen 443 ssl;
+
     server_name $DOMAIN;
 
     ssl_certificate     /etc/letsencrypt/live/$DOMAIN/fullchain.pem;
@@ -31,4 +33,3 @@ server {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
-
